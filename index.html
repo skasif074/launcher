@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re-Connect | Launching...</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff4d4d, #6a11cb, #2575fc);
+      background-size: 300% 300%;
+      animation: gradientShift 10s ease infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    .desc-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+      border-radius: 15px;
+      padding: 25px;
+      max-width: 750px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      margin-bottom: 25px;
+    }
+
+    .desc-box::before {
+      content: "";
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      z-index: -1;
+      border-radius: 17px;
+      background: linear-gradient(90deg, #ff4d4d, #ffb84d, #2575fc);
+      background-size: 200% 200%;
+      animation: borderShift 6s linear infinite;
+    }
+
+    @keyframes borderShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .desc-box p {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .founder {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #ffe082;
+    }
+
+    button {
+      background: #fff;
+      color: #6a11cb;
+      font-size: 1.2rem;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ffe082;
+      color: #222;
+    }
+
+    .loading {
+      margin-top: 40px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+      white-space: pre-line;
+    }
+
+    .spinner {
+      margin-top: 20px;
+      border: 6px solid rgba(255,255,255,0.2);
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .desc-box p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Re-Connect 🌍</h1>
+
+  <div class="desc-box">
+    <p>
+      From the founder of <strong>Re-Connect</strong> — a vibrant, next-generation social media platform 
+      built to bring people closer than ever before.  
+      Here, you can discover new friends, chat in real-time, share moments that matter, 
+      and enjoy seamless voice and video calls — all in one beautiful interface.  
+      Re-Connect isn’t just another app — it’s a place to belong, to share, and to connect
+      with authenticity and joy. Join the future of communication today!
+    </p>
+    <p class="founder">— by SK ASIF HOSSAIN (Founder)</p>
+  </div>
+
+  <button id="goBtn">Go 🚀</button>
+
+  <div class="loading" id="loading"></div>
+  <div class="spinner" id="spinner"></div>
+
+  <script>
+    const backendUrl = "https://re-connect-a8uk.onrender.com"; 
+
+   
+    window.addEventListener("load", () => {
+      fetch(backendUrl).catch(() => {});
+      setTimeout(() => fetch(backendUrl).catch(() => {}), 5000);
+    });
+
+    const btn = document.getElementById("goBtn");
+    const loading = document.getElementById("loading");
+    const spinner = document.getElementById("spinner");
+
+
+    const steps = [
+      "Fetching account information...",
+      "Authenticating user...",
+      "Loading environments...",
+      "Loading chats...",
+      "Syncing contacts...",
+      "Optimizing media channels...",
+      "Finalizing connection...",
+      "Done...",
+      "Redirecting..."
+    ];
+
+    btn.addEventListener("click", () => {
+      btn.style.display = "none";
+      spinner.style.display = "block";
+      loading.innerText = "";
+
+      let delay = 0;
+      const stepDuration = 5000; 
+
+      steps.forEach((step) => {
+        setTimeout(() => {
+          loading.innerText = step;
+        }, delay);
+        delay += stepDuration;
+      });
+
+
+      setTimeout(() => {
+        window.location.href = backendUrl;
+      }, steps.length * stepDuration);
+    });
+  </script>
+</body>
+</html>
