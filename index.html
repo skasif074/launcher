@@ -3,117 +3,476 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Re-Connect | Launching...</title>
+  <title>Re-Connect | The Future of Social Connection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #6a11cb;
+      --secondary: #2575fc;
+      --accent: #00f5ff;
+      --accent2: #ff4d4d;
+      --dark: #0a0a1a;
+      --light: #ffffff;
+      --glass: rgba(255, 255, 255, 0.05);
+      --neon-glow: 0 0 10px rgba(106, 17, 203, 0.7), 0 0 20px rgba(37, 117, 252, 0.5), 0 0 30px rgba(0, 245, 255, 0.3);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff4d4d, #6a11cb, #2575fc);
-      background-size: 300% 300%;
-      animation: gradientShift 10s ease infinite;
-      color: #fff;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 50%, #16213e 100%);
+      color: var(--light);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
       padding: 20px;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.4);
-    }
-
-    .desc-box {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid transparent;
-      background-clip: padding-box;
+      overflow-x: hidden;
       position: relative;
-      border-radius: 15px;
-      padding: 25px;
-      max-width: 750px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
-      margin-bottom: 25px;
+    }
+
+    /* Animated Background Elements */
+    .bg-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(106, 17, 203, 0.2);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      25% { transform: translateY(-20px) translateX(10px); }
+      50% { transform: translateY(-40px) translateX(20px); }
+      75% { transform: translateY(-20px) translateX(10px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+
+    .grid-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(106, 17, 203, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(106, 17, 203, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      text-shadow: var(--neon-glow);
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 10px rgba(106, 17, 203, 0.7), 0 0 20px rgba(37, 117, 252, 0.5), 0 0 30px rgba(0, 245, 255, 0.3); }
+      100% { text-shadow: 0 0 15px rgba(106, 17, 203, 0.9), 0 0 25px rgba(37, 117, 252, 0.7), 0 0 35px rgba(0, 245, 255, 0.5); }
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      opacity: 0.8;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    /* Enhanced Description Box with Aura Animation */
+    .desc-box {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 800px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), var(--neon-glow);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
     .desc-box::before {
-      content: "";
+      content: '';
       position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--accent2));
       z-index: -1;
-      border-radius: 17px;
-      background: linear-gradient(90deg, #ff4d4d, #ffb84d, #2575fc);
-      background-size: 200% 200%;
-      animation: borderShift 6s linear infinite;
+      border-radius: 25px;
+      animation: auraRotate 8s linear infinite;
+      filter: blur(20px);
+      opacity: 0.7;
     }
 
-    @keyframes borderShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes auraRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .desc-box p {
+    .desc-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .text-highlight {
+      display: inline-block;
+      position: relative;
+      font-weight: 700;
+      color: var(--light);
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+
+    .text-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .text-highlight.active::after {
+      transform: scaleX(1);
+    }
+
+    .text-highlight.active {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+    }
+
+    .desc-text {
       line-height: 1.8;
       font-size: 1.1rem;
-      opacity: 0.95;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      text-align: left;
     }
 
     .founder {
       font-weight: 600;
       font-size: 1rem;
-      margin-top: 10px;
-      color: #ffe082;
+      margin-top: 20px;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+      text-align: right;
+      position: relative;
+      display: inline-block;
+    }
+
+    .founder::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -30px;
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
     }
 
     button {
-      background: #fff;
-      color: #6a11cb;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: var(--light);
       font-size: 1.2rem;
+      font-weight: 600;
       border: none;
-      padding: 14px 40px;
-      border-radius: 30px;
+      padding: 16px 45px;
+      border-radius: 50px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), var(--neon-glow);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 auto;
     }
 
     button:hover {
-      transform: scale(1.05);
-      background: #ffe082;
-      color: #222;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 25px rgba(106, 17, 203, 0.6);
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
     }
 
-    .loading {
-      margin-top: 40px;
-      font-size: 1.1rem;
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    /* Loading Screen Styles */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 50%, #16213e 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .loading-screen.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loading-screen .logo {
+      margin-bottom: 40px;
+    }
+
+    .loading-screen .tagline {
+      margin-bottom: 60px;
+    }
+
+    .loading-container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .loading-text {
+      font-size: 1.3rem;
       line-height: 1.6;
-      opacity: 0.9;
-      white-space: pre-line;
+      margin-bottom: 40px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-    .spinner {
-      margin-top: 20px;
-      border: 6px solid rgba(255,255,255,0.2);
-      border-top: 6px solid #fff;
+    /* Advanced Aura Lights for Loading Screen */
+    .aura-lights {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .light-orb {
+      position: absolute;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      display: none;
+      filter: blur(40px);
+      opacity: 0.7;
+      animation: floatOrb 15s infinite linear;
+    }
+
+    .light-orb:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      top: 10%;
+      left: 10%;
+      animation-duration: 20s;
+    }
+
+    .light-orb:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      top: 60%;
+      right: 10%;
+      animation-duration: 25s;
+      animation-delay: -5s;
+    }
+
+    .light-orb:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      background: var(--accent);
+      bottom: 20%;
+      left: 20%;
+      animation-duration: 18s;
+      animation-delay: -10s;
+    }
+
+    .light-orb:nth-child(4) {
+      width: 350px;
+      height: 350px;
+      background: var(--accent2);
+      top: 30%;
+      right: 30%;
+      animation-duration: 22s;
+      animation-delay: -15s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, -50px) rotate(90deg); }
+      50% { transform: translate(0, -100px) rotate(180deg); }
+      75% { transform: translate(-100px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    /* Enhanced Quantum Loader for Loading Screen */
+    .quantum-loader {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 0 auto 40px;
+    }
+
+    .quantum-spinner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: spin 8s linear infinite;
+    }
+
+    .quantum-spinner:nth-child(1) {
+      border: 3px solid transparent;
+      border-top: 3px solid var(--primary);
+      border-right: 3px solid var(--primary);
+      animation-duration: 4s;
+    }
+
+    .quantum-spinner:nth-child(2) {
+      border: 3px solid transparent;
+      border-bottom: 3px solid var(--secondary);
+      border-left: 3px solid var(--secondary);
+      animation-duration: 6s;
+      animation-direction: reverse;
+    }
+
+    .quantum-spinner:nth-child(3) {
+      border: 3px solid transparent;
+      border-top: 3px solid var(--accent);
+      border-right: 3px solid var(--accent);
+      animation-duration: 10s;
+      width: 70%;
+      height: 70%;
+      top: 15%;
+      left: 15%;
+    }
+
+    .core {
+      position: absolute;
+      width: 30%;
+      height: 30%;
+      top: 35%;
+      left: 35%;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+
+    .orbiting-dots {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .dot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--light);
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    .dot:nth-child(1) {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: orbit1 3s linear infinite;
+    }
+
+    .dot:nth-child(2) {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      animation: orbit2 3s linear infinite;
+    }
+
+    .dot:nth-child(3) {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: orbit3 3s linear infinite;
+    }
+
+    .dot:nth-child(4) {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      animation: orbit4 3s linear infinite;
     }
 
     @keyframes spin {
@@ -121,78 +480,329 @@
       100% { transform: rotate(360deg); }
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .desc-box p { font-size: 1rem; }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+
+    @keyframes orbit1 {
+      0% { transform: translateX(-50%) rotate(0deg) translateY(-125px) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg) translateY(-125px) rotate(-360deg); }
+    }
+
+    @keyframes orbit2 {
+      0% { transform: translateY(-50%) rotate(0deg) translateX(125px) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg) translateX(125px) rotate(-360deg); }
+    }
+
+    @keyframes orbit3 {
+      0% { transform: translateX(-50%) rotate(0deg) translateY(125px) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg) translateY(125px) rotate(-360deg); }
+    }
+
+    @keyframes orbit4 {
+      0% { transform: translateY(-50%) rotate(0deg) translateX(-125px) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg) translateX(-125px) rotate(-360deg); }
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin-top: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      .desc-box {
+        padding: 20px;
+      }
+      
+      .desc-text {
+        font-size: 1rem;
+      }
+      
+      button {
+        padding: 14px 30px;
+        font-size: 1.1rem;
+      }
+      
+      .quantum-loader {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .light-orb {
+        filter: blur(30px);
+      }
+      
+      .light-orb:nth-child(1) {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .light-orb:nth-child(2) {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .light-orb:nth-child(3) {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .light-orb:nth-child(4) {
+        width: 220px;
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 0.9rem;
+      }
+      
+      .desc-box {
+        padding: 15px;
+      }
+      
+      button {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      
+      .quantum-loader {
+        width: 160px;
+        height: 160px;
+      }
+      
+      .loading-text {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Re-Connect 🌍</h1>
-
-  <div class="desc-box">
-    <p>
-      From the founder of <strong>Re-Connect</strong> — a vibrant, next-generation social media platform 
-      built to bring people closer than ever before.  
-      Here, you can discover new friends, chat in real-time, share moments that matter, 
-      and enjoy seamless voice and video calls — all in one beautiful interface.  
-      Re-Connect isn’t just another app — it’s a place to belong, to share, and to connect
-      with authenticity and joy. Join the future of communication today!
-    </p>
-    <p class="founder">— by SK ASIF HOSSAIN (Founder)</p>
+  <div class="bg-elements">
+    <div class="grid-lines"></div>
   </div>
 
-  <button id="goBtn">Go 🚀</button>
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1 class="logo">Re-Connect</h1>
+    <p class="tagline">The Next Generation Social Experience</p>
 
-  <div class="loading" id="loading"></div>
-  <div class="spinner" id="spinner"></div>
+    <div class="desc-box">
+      <div class="desc-content">
+        <p class="desc-text">
+          From the founder of <span class="text-highlight" id="highlight1">Re-Connect</span> — a vibrant, 
+          <span class="text-highlight" id="highlight2">next-generation social media platform</span> 
+          built to bring people closer than ever before.  
+          Here, you can <span class="text-highlight" id="highlight3">discover new friends</span>, 
+          <span class="text-highlight" id="highlight4">chat in real-time</span>, 
+          <span class="text-highlight" id="highlight5">share moments that matter</span>, 
+          and enjoy <span class="text-highlight" id="highlight6">seamless voice and video calls</span> — 
+          all in one <span class="text-highlight" id="highlight7">beautiful interface</span>.  
+          <span class="text-highlight" id="highlight8">Re-Connect</span> isn't just another app — 
+          it's a place to <span class="text-highlight" id="highlight9">belong</span>, to 
+          <span class="text-highlight" id="highlight10">share</span>, and to 
+          <span class="text-highlight" id="highlight11">connect</span>
+          with authenticity and joy. 
+          <span class="text-highlight" id="highlight12">Join the future of communication today!</span>
+        </p>
+        <p class="founder">—SK ASIF HOSSAIN (Founder)</p>
+      </div>
+    </div>
+
+    <button id="goBtn">
+      <i class="fas fa-rocket"></i> Launch Experience
+    </button>
+  </div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="aura-lights">
+      <div class="light-orb"></div>
+      <div class="light-orb"></div>
+      <div class="light-orb"></div>
+      <div class="light-orb"></div>
+    </div>
+    
+    <h1 class="logo">Re-Connect</h1>
+    <p class="tagline">Initializing Your Experience</p>
+    
+    <div class="loading-container">
+      <div class="loading-text" id="loading"></div>
+      
+      <div class="quantum-loader">
+        <div class="quantum-spinner"></div>
+        <div class="quantum-spinner"></div>
+        <div class="quantum-spinner"></div>
+        <div class="core"></div>
+        <div class="orbiting-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+  </div>
 
   <script>
     const backendUrl = "https://re-connect-a8uk.onrender.com"; 
 
-   
+    // Pre-warm the backend
     window.addEventListener("load", () => {
       fetch(backendUrl).catch(() => {});
       setTimeout(() => fetch(backendUrl).catch(() => {}), 5000);
+      
+      // Start the text highlighting animation
+      startTextHighlighting();
     });
 
     const btn = document.getElementById("goBtn");
+    const loadingScreen = document.getElementById("loadingScreen");
     const loading = document.getElementById("loading");
-    const spinner = document.getElementById("spinner");
-
+    const progressBar = document.getElementById("progressBar");
+    const mainContent = document.querySelector('.main-content');
 
     const steps = [
-      "Fetching account information...",
-      "Authenticating user...",
-      "Loading environments...",
-      "Loading chats...",
-      "Syncing contacts...",
-      "Optimizing media channels...",
-      "Finalizing connection...",
-      "Done...",
-      "Redirecting..."
+      "Initializing quantum connection...",
+      "Authenticating user credentials...",
+      "Loading neural interface...",
+      "Synchronizing social matrix...",
+      "Establishing secure channels...",
+      "Optimizing media streams...",
+      "Calibrating experience parameters...",
+      "Connection established...",
+      "Redirecting to Re-Connect..."
     ];
 
     btn.addEventListener("click", () => {
-      btn.style.display = "none";
-      spinner.style.display = "block";
-      loading.innerText = "";
-
-      let delay = 0;
-      const stepDuration = 5000; 
-
-      steps.forEach((step) => {
-        setTimeout(() => {
-          loading.innerText = step;
-        }, delay);
-        delay += stepDuration;
-      });
-
-
+      // Hide main content and show loading screen
+      mainContent.style.opacity = '0';
+      mainContent.style.transform = 'translateY(20px)';
+      
       setTimeout(() => {
-        window.location.href = backendUrl;
-      }, steps.length * stepDuration);
+        mainContent.style.display = 'none';
+        loadingScreen.classList.add('active');
+        
+        // Start the loading process
+        startLoadingProcess();
+      }, 500);
     });
+
+    function startLoadingProcess() {
+      let currentStep = 0;
+      const totalSteps = steps.length;
+      const stepDuration = 3000; // 3 seconds per step
+
+      const updateProgress = () => {
+        const progress = ((currentStep + 1) / totalSteps) * 100;
+        progressBar.style.width = `${progress}%`;
+      };
+
+      const processStep = () => {
+        if (currentStep < totalSteps) {
+          loading.innerText = steps[currentStep];
+          updateProgress();
+          currentStep++;
+          setTimeout(processStep, stepDuration);
+        } else {
+          // Redirect after the final step
+          setTimeout(() => {
+            window.location.href = backendUrl;
+          }, 1000);
+        }
+      };
+
+      // Start the process
+      processStep();
+    }
+
+    // Text Highlighting Animation
+    function startTextHighlighting() {
+      const highlights = document.querySelectorAll('.text-highlight');
+      let currentIndex = 0;
+      
+      function highlightNext() {
+        // Remove active class from all highlights
+        highlights.forEach(highlight => {
+          highlight.classList.remove('active');
+        });
+        
+        // Add active class to current highlight
+        highlights[currentIndex].classList.add('active');
+        
+        // Move to next highlight
+        currentIndex = (currentIndex + 1) % highlights.length;
+        
+        // Schedule next highlight
+        setTimeout(highlightNext, 1500);
+      }
+      
+      // Start the highlighting sequence
+      setTimeout(highlightNext, 1000);
+    }
+
+    // Create dynamic background particles
+    function createParticles() {
+      const bgElements = document.querySelector('.bg-elements');
+      const particleCount = window.innerWidth < 768 ? 15 : 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 6 + 2;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 20 + 10;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        bgElements.appendChild(particle);
+      }
+    }
+    
+    // Initialize particles when page loads
+    window.addEventListener('load', createParticles);
   </script>
 </body>
 </html>
